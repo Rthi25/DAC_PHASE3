@@ -1,0 +1,32 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load COVID-19 data from a CSV file (replace 'covid_data.csv' with your data file)
+data = pd.read_csv('covid_data.csv')
+
+# Data Preprocessing
+data['Date'] = pd.to_datetime(data['Date'])  # Convert 'Date' column to datetime format
+
+# Data Visualization
+plt.figure(figsize=(10, 6))
+plt.plot(data['Date'], data['DailyCases'], label='Daily Cases', marker='o')
+plt.plot(data['Date'], data['DailyDeaths'], label='Daily Deaths', marker='x')
+plt.title('Daily COVID-19 Cases and Deaths')
+plt.xlabel('Date')
+plt.ylabel('Count')
+plt.legend()
+plt.grid(True)
+
+# Compute and display basic statistics
+mean_cases = data['DailyCases'].mean()
+mean_deaths = data['DailyDeaths'].mean()
+std_cases = data['DailyCases'].std()
+std_deaths = data['DailyDeaths'].std()
+
+print(f"Mean Daily Cases: {mean_cases}")
+print(f"Mean Daily Deaths: {mean_deaths}")
+print(f"Standard Deviation of Daily Cases: {std_cases}")
+print(f"Standard Deviation of Daily Deaths: {std_deaths}")
+
+# Show the plot
+plt.show()
